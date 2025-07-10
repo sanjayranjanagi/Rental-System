@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,14 @@ public class QuickRentalApi {
 		
 		return new ResponseEntity<>(cdto,HttpStatus.OK);
 	}
+	
+	@PostMapping(value="/register-customer")
+	public ResponseEntity<String> registerCustomer(@RequestBody @Valid CustomerDTO customerDTO) throws QuickRentalException {
+	    String name = quickVehicleService.registerCustomer(customerDTO);
+	    String successMessage = environment.getProperty("QuickRentalApi.CUSTOMER-REGISTERED") + ": " + name;
+	    return new ResponseEntity<>(successMessage, HttpStatus.CREATED);
+	}
+
 	
 	@DeleteMapping(value="/delete")
 	public ResponseEntity<String>deleteCustomer(@RequestBody CustomerDTO customerDTO) throws QuickRentalException{

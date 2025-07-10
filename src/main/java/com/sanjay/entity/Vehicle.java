@@ -1,21 +1,28 @@
 package com.sanjay.entity;
 
-import com.sanjay.dto.VehicleTypeAndStatus;
+import com.sanjay.dto.BookingStatus;
+import com.sanjay.dto.VehicleType;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Vehicle {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String vehicleNo;
 	private String vehicleName;
 	private Integer price;
 	@Enumerated(EnumType.STRING)
-	private VehicleTypeAndStatus bookingStatus;
+	private BookingStatus bookingStatus;
 	@Enumerated(EnumType.STRING)
-	private VehicleTypeAndStatus vehicleType;
+	private VehicleType vehicleType;
 	public String getVehicleNo() {
 		return vehicleNo;
 	}
@@ -34,16 +41,16 @@ public class Vehicle {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public VehicleTypeAndStatus getBookingStatus() {
+	public BookingStatus getBookingStatus() {
 		return bookingStatus;
 	}
-	public void setBookingStatus(VehicleTypeAndStatus bookingStatus) {
+	public void setBookingStatus(BookingStatus bookingStatus) {
 		this.bookingStatus = bookingStatus;
 	}
-	public VehicleTypeAndStatus getVehicleType() {
+	public VehicleType getVehicleType() {
 		return vehicleType;
 	}
-	public void setVehicleType(VehicleTypeAndStatus vehicleType) {
+	public void setVehicleType(VehicleType vehicleType) {
 		this.vehicleType = vehicleType;
 	}
 	

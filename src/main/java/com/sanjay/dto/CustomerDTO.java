@@ -11,7 +11,8 @@ public class CustomerDTO {
 	private Integer customerId;
 	private String customerName;
 	@NotNull(message="{customer.drivinglicenceno.absent}")
-	@Pattern(regexp ="([A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{7}",message="")
+	@Pattern(regexp = "([A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{7})",
+    message = "Invalid driving licence format")
 	private String drivingLicenceNo;
 	private Integer age;
 	private List<RentalHistoryDTO>rentalHistoryDTOs;

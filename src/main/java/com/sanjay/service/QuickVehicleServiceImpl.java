@@ -67,16 +67,35 @@ public class QuickVehicleServiceImpl implements QuickVehicleService{
 		return cdto;
 	}
 	
-	@Override
-	public String deleteCustomer(CustomerDTO customerDTO) throws QuickRentalException{
-		Optional<Customer>c=customerRepository.findByDrivingLicenceNo(customerDTO.getDrivingLicenceNo());
-		if(c.isEmpty()) {
-			throw new QuickRentalException("QuickVehicleService.CUSTOMER_NOT_FOUND");
+		@Override
+		public String deleteCustomer(CustomerDTO customerDTO) throws QuickRentalException{
+			Optional<Customer>c=customerRepository.findByDrivingLicenceNo(customerDTO.getDrivingLicenceNo());
+			System.out.println("Received Driving Licence No: " + customerDTO.getDrivingLicenceNo());
+
+			if(c.isEmpty()) {
+				throw new QuickRentalException("QuickVehicleService.CUSTOMER_NOT_FOUND");
+			}
+			Customer cust=c.get();
+			String no=cust.getDrivingLicenceNo();
+			customerRepository.delete(cust);
+			
+			return no;
 		}
-		Customer cust=c.get();
-		String no=cust.getDrivingLicenceNo();
-		customerRepository.delete(cust);
 		
-		return no;
-	}
+		@Override
+		public String registerCustomer(CustomerDTO customerDTO) throws QuickRentalException {
+		    Optional<Customer> existing = customerRepository.findByDrivingLicenceNo(customerDTO.getDrivingLicenceNo());
+		    if (existing.isPresent()) {
+		        throw new QuickRentalException("QuickVehicleService.CUSTOMER_ALREADY_EXISTS");
+		    }
+
+		    Customer c = new Customer();
+		    c.setCustomerName(customerDTO.getCustomerName());
+		    c.setDrivingLicenceNo(customerDTO.getDrivingLicenceNo());
+		    c.setAge(customerDTO.getAge());
+
+		    Customer saved = customerRepository.save(c);
+		    return saved.getCustomerName();
+		}
+
 }

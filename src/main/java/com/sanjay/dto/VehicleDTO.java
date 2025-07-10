@@ -6,7 +6,7 @@ public class VehicleDTO {
 	private String vehicleName;
 	private Integer price;
 	private String bookingStatus;
-	private VehicleTypeAndStatus vehicleType;
+	private VehicleType vehicleType;
 	public String getVehicleNo() {
 		return vehicleNo;
 	}
@@ -31,10 +31,10 @@ public class VehicleDTO {
 	public void setBookingStatus(String bookingStatus) {
 		this.bookingStatus = bookingStatus;
 	}
-	public VehicleTypeAndStatus getVehicleType() {
+	public VehicleType getVehicleType() {
 		return vehicleType;
 	}
-	public void setVehicleType(VehicleTypeAndStatus vehicleType) {
+	public void setVehicleType(VehicleType vehicleType) {
 		this.vehicleType = vehicleType;
 	}
 	

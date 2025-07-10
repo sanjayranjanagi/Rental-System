@@ -8,4 +8,8 @@ public interface QuickVehicleService {
 	public CustomerDTO viewRentalHistory(Integer customerId) throws QuickRentalException;
 	
 	public String deleteCustomer(CustomerDTO customerDTo) throws QuickRentalException;
+	
+	String registerCustomer(CustomerDTO customerDTO) throws QuickRentalException;
+
 }
+	

@@ -1,4 +1,4 @@
-package com.sanjay.project.quick_rental;
+package com.sanjay;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
